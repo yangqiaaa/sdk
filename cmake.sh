@@ -90,10 +90,13 @@ case $* in
 
 "help")
     echo "usage"
-    echo "'cmake.sh cmake'"
-    echo "'cmake.sh clean'"
+    echo "'cmake.sh cmake' to build bin"
+    echo "'cmake.sh clean' to clean data"
     ;;
-"run")
-    ./bin/main
+"start")
+    ./bin/sdk_deamon start
     ;;   
+"stop")
+    ./bin/sdk_deamon stop
+    ;;  
 esac
