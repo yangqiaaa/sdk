@@ -1,17 +1,17 @@
 /*********************************************************************************
-  *Copyright(C),1996-2021, Company
-  *FileName:  cdcs_handle.c
-  *Author:  wyp
-  *Version:  V1.0
-  *Date:  2023-05-30 14:45:27
-  *Description:
+    *Copyright(C),1996-2021, Company
+    *FileName:  cdcs_handle.c
+    *Author:  wyp
+    *Version:  V1.0
+    *Date:  2023-05-30 14:45:27
+    *Description:
 
 
-  *History:
-     1.Date:
-       Author:
-       Modification:
-     2.
+    *History:
+        1.Date:
+            Author:
+            Modification:
+        2.
 **********************************************************************************/
 
 

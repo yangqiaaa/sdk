@@ -1,17 +1,17 @@
 /*********************************************************************************
-  *Copyright(C),1996-2021, Company
-  *FileName:  cdcs_signal.c
-  *Author:  wyp
-  *Version:  V1.0
-  *Date:  2023-05-30 15:42:17
-  *Description:
+    *Copyright(C),1996-2021, Company
+    *FileName:  cdcs_signal.c
+    *Author:  wyp
+    *Version:  V1.0
+    *Date:  2023-05-30 15:42:17
+    *Description:
 
 
-  *History:
-     1.Date:
-       Author:
-       Modification:
-     2.
+    *History:
+        1.Date:
+        Author:
+        Modification:
+        2.
 **********************************************************************************/
 
 
