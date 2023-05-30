@@ -337,6 +337,7 @@ void cdcs_msg_decode_callback(int fd, unsigned char *data, unsigned int len)
             break;
         }
 
+        //4 tbox send signal type and power
         case TBOX__NET__MESSAGETYPE__RESPONSE_NETWORK_SIGNAL_STRENGTH:
         {
             cdcs_sm_callback(&fd, TopMsg);
@@ -362,16 +363,6 @@ void cdcs_msg_decode_callback(int fd, unsigned char *data, unsigned int len)
         // case TBOX__NET__MESSAGETYPE__RESPONSE_HEARTBEAT_RESULT:
         // {
         //     ERROR("message type is response hearbeat result,should tbox send");
-        //     break;
-        // }
-
-        // //3 signal strength
-        // case TBOX__NET__MESSAGETYPE__REQUEST_NETWORK_SIGNAL_STRENGTH:
-        // {
-        //     DEBUG("signal strength");
-        //     DEBUG("signal strength onoff:%d", TopMsg->tbox_network_ctrl->onoff);
-        //     DEBUG("signal strength time_cycle:%d", TopMsg->tbox_network_ctrl->time_cycle);
-        //     cdcs_msg_response_send( fd ,TBOX__NET__MESSAGETYPE__REQUEST_NETWORK_SIGNAL_STRENGTH);
         //     break;
         // }
         

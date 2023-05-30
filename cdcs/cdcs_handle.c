@@ -33,7 +33,7 @@ typedef struct _ctrl_sm
 
 typedef struct
 {
-    cdcs_sm_t cdcs_sm[1];        //State Machines Corresponding to Different Control Commands
+    cdcs_sm_t cdcs_sm[CDCS_MSG_TYPE_MAX];        //State Machines Corresponding to Different Control Commands
 } cdcs_state_t;
 
 /***************************************Variables***********************************/
@@ -42,7 +42,7 @@ cdcs_state_t cdcs_state =
     .cdcs_sm =
     {   
     	/*type                                 ,   funtion,            */                                         
-    	{(int)TBOX__NET__MESSAGETYPE__RESPONSE_HEARTBEAT_RESULT	, 	NULL,  		},
+    	{(int)TBOX__NET__MESSAGETYPE__RESPONSE_NETWORK_SIGNAL_STRENGTH	, 	cdcs_callback_signal,  		},
     },
 };
 
@@ -63,17 +63,17 @@ int cdcs_sm_callback(int* fd, Tbox__Net__TopMessage *msg)
 	int i = 0;	
     for (i = 0; i < CDCS_MSG_TYPE_MAX; i++)
     {
-        if (msg->message_type == i)
+        if (msg->message_type == cdcs_state.cdcs_sm[i].type)
         {
             if(cdcs_state.cdcs_sm[i].callback != NULL)
             {
-                my_zlog_info_cdcs("*no type(%d) callback", msg->message_type);
+                my_zlog_info_cdcs("cdcs msg type(%d) callback", msg->message_type);
                 cdcs_state.cdcs_sm[i].callback(fd, msg);
                 return 0;
             }
             else
             {
-                my_zlog_error_cdcs("*type(%d) callback is NULL", msg->message_type);
+                my_zlog_error_cdcs("callbacak list(%d),*type(%d) callback is NULL",i, msg->message_type);
                 return 2;
             }
 
