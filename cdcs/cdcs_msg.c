@@ -336,6 +336,12 @@ void cdcs_msg_decode_callback(int fd, unsigned char *data, unsigned int len)
             my_zlog_error_cdcs("msg request is none");
             break;
         }
+
+        case TBOX__NET__MESSAGETYPE__RESPONSE_NETWORK_SIGNAL_STRENGTH:
+        {
+            cdcs_sm_callback(&fd, TopMsg);
+            break;
+        }
         
         // //1 heartbeat
         // case TBOX__NET__MESSAGETYPE__REQUEST_HEARTBEAT_SIGNAL:

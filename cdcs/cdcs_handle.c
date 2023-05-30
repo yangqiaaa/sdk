@@ -19,6 +19,7 @@
 //#include"xxx.h"
 //#include"xxx.h"
 #include "cdcs/cdcs_pb.h"
+#include "cdcs/cdcs_msg.h"
 #include "myzlog.h"
 
 #define CDCS_MSG_TYPE_MAX TBOX__NET__MESSAGETYPE__REQUEST_SYNC_SIGNALTYPE_RESULT
@@ -27,7 +28,7 @@
 typedef struct _ctrl_sm
 {
     int type;
-	int (*callback)( int*);	
+	int (*callback)( int*, Tbox__Net__TopMessage *);	
 } cdcs_sm_t;
 
 typedef struct
@@ -57,22 +58,22 @@ cdcs_state_t cdcs_state =
  * @date 2023-05-30 15:09:00 
  * @version V1.0.0 
 */
-int cdcs_sm_callback(int* type)
+int cdcs_sm_callback(int* fd, Tbox__Net__TopMessage *msg)
 {
 	int i = 0;	
     for (i = 0; i < CDCS_MSG_TYPE_MAX; i++)
     {
-        if (*type == i)
+        if (msg->message_type == i)
         {
             if(cdcs_state.cdcs_sm[i].callback != NULL)
             {
-                my_zlog_info_cdcs("*no type(%d) callback", *type);
-                cdcs_state.cdcs_sm[i].callback(type);
+                my_zlog_info_cdcs("*no type(%d) callback", msg->message_type);
+                cdcs_state.cdcs_sm[i].callback(fd, msg);
                 return 0;
             }
             else
             {
-                my_zlog_error_cdcs("*type(%d) callback is NULL", *type);
+                my_zlog_error_cdcs("*type(%d) callback is NULL", msg->message_type);
                 return 2;
             }
 
@@ -81,7 +82,7 @@ int cdcs_sm_callback(int* type)
 
     if(i == CDCS_MSG_TYPE_MAX)
     {
-        my_zlog_error_cdcs("*no type(%d) callback", *type);
+        my_zlog_error_cdcs("*no type(%d) callback", msg->message_type);
     }
     return 1;
 }
