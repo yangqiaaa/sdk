@@ -37,10 +37,8 @@ typedef struct
 } cdcs_state_t;
 
 /***************************************Variables***********************************/
-cdcs_state_t cdcs_state =
-{
-    .cdcs_sm =
-    {   
+cdcs_state_t cdcs_state = {
+    .cdcs_sm = {   
     	/*type                                 ,   funtion,            */                                         
     	{(int)TBOX__NET__MESSAGETYPE__RESPONSE_NETWORK_SIGNAL_STRENGTH	, 	cdcs_callback_signal,  		},
     },
@@ -58,30 +56,24 @@ cdcs_state_t cdcs_state =
  * @date 2023-05-30 15:09:00 
  * @version V1.0.0 
 */
-int cdcs_sm_callback(int* fd, Tbox__Net__TopMessage *msg)
-{
+int cdcs_sm_callback(int* fd, Tbox__Net__TopMessage *msg) {
 	int i = 0;	
     for (i = 0; i < CDCS_MSG_TYPE_MAX; i++)
     {
-        if (msg->message_type == cdcs_state.cdcs_sm[i].type)
-        {
-            if(cdcs_state.cdcs_sm[i].callback != NULL)
-            {
+        if (msg->message_type == cdcs_state.cdcs_sm[i].type) {
+            if (cdcs_state.cdcs_sm[i].callback != NULL) {
                 my_zlog_info_cdcs("cdcs msg type(%d) callback", msg->message_type);
                 cdcs_state.cdcs_sm[i].callback(fd, msg);
                 return 0;
             }
-            else
-            {
+            else {
                 my_zlog_error_cdcs("callbacak list(%d),*type(%d) callback is NULL",i, msg->message_type);
                 return 2;
             }
-
         }
     }
 
-    if(i == CDCS_MSG_TYPE_MAX)
-    {
+    if (i == CDCS_MSG_TYPE_MAX) {
         my_zlog_error_cdcs("*no type(%d) callback", msg->message_type);
     }
     return 1;

@@ -82,4 +82,23 @@ int cdcs_msg_heart_request_send( int fd, int heart_type)
 	
 }
 
+void cdcs_poll_heart_send(struct mycdcs_t *param){
+    int list = 0;
+    for (list = 0; list < CDCS_CLIENT_NUM_MAX; list++) {
+        my_zlog_info_cdcs("test send heart type(%d),fd(%d)", param->mycdcs_data.cdcs_client[list].type, param->mycdcs_data.cdcs_client[list].fd);
+        if((param->mycdcs_data.cdcs_client[list].fd > 0)  \
+        && (param->mycdcs_data.cdcs_client[list].type == TBOX__NET__HEART__TYPE__HEART_3CALL))
+        {
+            cdcs_msg_heart_request_send( param->mycdcs_data.cdcs_client[list].fd, param->mycdcs_data.cdcs_client[list].type);
+        }
+
+        if((param->mycdcs_data.cdcs_client[list].fd > 0)  \
+        && (param->mycdcs_data.cdcs_client[list].type == TBOX__NET__HEART__TYPE__HEART_NMEA))
+        {
+            cdcs_msg_heart_request_send( param->mycdcs_data.cdcs_client[list].fd, param->mycdcs_data.cdcs_client[list].type);
+        }
+        
+    }
+}
+
 /* [] END OF FILE */

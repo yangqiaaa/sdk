@@ -33,6 +33,10 @@ typedef void (*ivi_msg_proc)(unsigned char *msg, unsigned int len);
 typedef void (*ivi_msg_handler)(int fd, unsigned char *msg, unsigned int len);
 
 /***************************************Functions***********************************/
+//cdcs main
+void cdcs_init(struct mycdcs_t *param, int list);
+
+
 //void test(void);
 //send
 int cdcs_net_top_message_pack( Tbox__Net__TopMessage *TopMsg,unsigned char *pro_buf,unsigned int in_size,size_t *out_size);
@@ -48,6 +52,15 @@ void cdcs_msg_decode_callback(int fd, unsigned char *data, unsigned int len);
 //recv callback
 int cdcs_sm_callback(int* fd, Tbox__Net__TopMessage *msg);
 int cdcs_callback_signal(int *fd, Tbox__Net__TopMessage *msg);
+
+
+//connect 
+int cdcs_tcp_socket_client(struct mycdcs_t *param, int list);
+int cdcs_create_tcp_client(struct mycdcs_t *param, int list);
+
+//heart
+void cdcs_poll_heart_send(struct mycdcs_t *param);
+
 
 #endif
 /* [] END OF FILE */

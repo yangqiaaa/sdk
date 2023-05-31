@@ -278,8 +278,7 @@ void cdcs_msg_decodex(int fd, MSG_RX *rx, ivi_msg_handler ivi_msg_proc)
  * @date 2021/10/22
  * @version V1.0
 **/
-void cdcs_msg_decode_callback(int fd, unsigned char *data, unsigned int len)
-{
+void cdcs_msg_decode_callback(int fd, unsigned char *data, unsigned int len) {
     int i = 0;
     short msg_len = 0;
     short msg_len1 = 0;

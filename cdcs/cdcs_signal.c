@@ -30,8 +30,7 @@
 
 
 /***************************************Functions***********************************/
-int cdcs_callback_signal(int *fd, Tbox__Net__TopMessage *msg)
-{
+int cdcs_callback_signal(int *fd, Tbox__Net__TopMessage *msg) {
     if (*fd < 0) {
         return 1;
     }
