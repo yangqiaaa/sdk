@@ -178,8 +178,6 @@ int cdcs_tcp_socket_client(struct mycdcs_t *param, int list)
     bzero(&serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(CDCS_SERVER_PORT);
-    // serv_addr.sin_addr.s_addr = CDCS_SERVER_ADDR;
-    // strcpy(serv_addr.sin_addr.s_addr, CDCS_SERVER_ADDR);
     serv_addr.sin_addr.s_addr = inet_addr(CDCS_SERVER_ADDR);
 
     my_zlog_info_cdcs("server addr : %d, port(%d)",serv_addr.sin_addr.s_addr, serv_addr.sin_port);
@@ -248,8 +246,6 @@ int cdcs_create_tcp_client(struct mycdcs_t *param, int list)
             cdcs_tcp_socket_client(param, i);
         } 
     }
-
-
 
     return 0;
 }

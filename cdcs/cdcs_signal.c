@@ -32,17 +32,14 @@
 /***************************************Functions***********************************/
 int cdcs_callback_signal(int *fd, Tbox__Net__TopMessage *msg)
 {
-    if(*fd < 0)
-    {
+    if (*fd < 0) {
         return 1;
     }
-    if(msg == NULL)
-    {
+    if (msg == NULL) {
         return 2;
     }
 
-    switch (msg->message_type)
-    {
+    switch (msg->message_type) {
         case TBOX__NET__MESSAGETYPE__RESPONSE_NETWORK_SIGNAL_STRENGTH:
         {
             my_zlog_info_cdcs("cdcs signal type(%d) power(%d)", msg->signal_type, msg->signal_power);
@@ -50,9 +47,12 @@ int cdcs_callback_signal(int *fd, Tbox__Net__TopMessage *msg)
         }
 
     
-        default:
+        default:{
+            my_zlog_error_cdcs("recv unknown message type(%d), no handle", msg->message_type);
             break;
+        }   
     }
+
     return 0;
 }
 

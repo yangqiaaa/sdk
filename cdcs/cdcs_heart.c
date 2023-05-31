@@ -61,12 +61,12 @@ int cdcs_msg_heart_request_send( int fd, int heart_type)
     }
     else
     {
-        my_zlog_error_cdcs("unknow heart type(%d)", heart_type);
+        my_zlog_debug_cdcs("unknow heart type(%d)", heart_type);
     }
 
     ihu_heart_type.has_heart_type = PARAM_EXISTS;
 
-	my_zlog_info_cdcs("ihu_heart_type.heart_type = %d", ihu_heart_type.heart_type);
+	my_zlog_debug_cdcs("ihu_heart_type.heart_type = %d", ihu_heart_type.heart_type);
 
 
     TopMsg.ihu_heart_type = &ihu_heart_type;

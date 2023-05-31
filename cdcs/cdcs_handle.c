@@ -22,7 +22,7 @@
 #include "cdcs/cdcs_msg.h"
 #include "myzlog.h"
 
-#define CDCS_MSG_TYPE_MAX TBOX__NET__MESSAGETYPE__REQUEST_SYNC_SIGNALTYPE_RESULT
+#define CDCS_MSG_TYPE_MAX (TBOX__NET__MESSAGETYPE__REQUEST_SYNC_SIGNALTYPE_RESULT + 1)
 /***************************************Macros***********************************/
 //#define
 typedef struct _ctrl_sm
